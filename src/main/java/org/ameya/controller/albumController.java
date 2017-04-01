@@ -53,4 +53,9 @@ public class AlbumController {
 			dbConnection.addAlbum(album);
 		}
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{albumId}")
+	public boolean updateAlbum(@RequestBody Album album, @PathVariable int albumId) {
+		return dbConnection.updateAlbum(album, albumId);
+	}
 }

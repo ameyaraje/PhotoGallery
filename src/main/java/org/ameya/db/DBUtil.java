@@ -10,11 +10,11 @@ public class DBUtil {
 	private HashMap<Integer, Photo> photosfromId = new HashMap<>();
 	private static DBUtil dbConnection;
 		
-	DBUtil(){
+	DBUtil() {
 		
 	}
 
-	public static DBUtil create(){
+	public static DBUtil create() {
 		if (dbConnection == null) {
 			dbConnection = new DBUtil();
 		}
@@ -36,6 +36,15 @@ public class DBUtil {
 		albums.remove(albumId);
 		photosInAlbum.remove(albumId);
 		return true;
+	}
+
+	public boolean updateAlbum(Album album, int albumId) {
+		if (!albums.containsKey(albumId))
+			return false;
+		
+		albums.remove(albumId);
+		albums.put(albumId, album);
+		return true;	
 	}
 
 	public void addPhoto(Photo photo) {
@@ -95,6 +104,7 @@ public class DBUtil {
 	public HashMap<Integer, Album> getAlbums() {
 		return albums;
 	}
+
 
 
 	
