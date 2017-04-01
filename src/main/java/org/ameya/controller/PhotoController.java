@@ -15,43 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/photos")
 public class PhotoController {
 
-	private static DBConnection dbConnection = DBConnection.create();
-	private static HashMap<Integer, ArrayList<Photo>> photosInAlbum = dbConnection.getPhotosInAlbums();
-	private static HashMap<Integer, Album> albums = dbConnection.getAlbums();
+	private DBConnection dbConnection = DBConnection.create();
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
-	public static Photo getPhoto(@PathVariable Long photoId) {
-		for (ArrayList<Photo> p: photosInAlbum.values()) {
-			for (Photo ph: p) {
-				if (ph.getAlbumId() == photoId)
-					return ph;
-			}
-		}
-		System.out.println("Photo does not exist in database");
-		return null;
+	public Photo getPhoto(@PathVariable Long photoId) {
+		return dbConnection.getPhoto(photoId);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{photoId}")
-	public static void removePhoto(@PathVariable Long photoId) {
-		for (ArrayList<Photo> p: photosInAlbum.values()) {
-			for (Photo ph: p) {
-				if (ph.getAlbumId() == photoId)
-					p.remove(ph);
-			}
-		}
-		System.out.println("Removed photo from the database");
+	public void removePhoto(@PathVariable Long photoId) {
+		dbConnection.removePhoto(photoId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/addPhoto")
-	public static void addPhoto(@RequestBody Photo photo) {
-		
-		//int code = photos.get(photo.getAlbumId()).size()+1;
-		if(photosInAlbum.containsKey(photo.getAlbumId())){
-			photosInAlbum.get(photo.getAlbumId()).add(photo);			
-		} else{
-			ArrayList<Photo> newAlbum =  new ArrayList<>();
-			newAlbum.add(photo);
-			photosInAlbum.put(photo.getAlbumId(), newAlbum);
-		}	
+	public void addPhoto(@RequestBody Photo photo) {
+		dbConnection.addPhoto(photo);		
 	}
 }
