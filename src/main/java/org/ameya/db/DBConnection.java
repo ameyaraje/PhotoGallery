@@ -32,4 +32,8 @@ public class DBConnection {
 		albums.put(album.getId(), album);		
 		
 	}
+
+	public void removeAlbum(int albumId) {
+		albums.remove(albumId);		
+	}
 }

@@ -19,6 +19,10 @@ public class AlbumController {
 	private DBConnection dbConnection = DBConnection.create();
 
 	public AlbumController() {
+		init();
+	}
+
+	private void init() {
 		dbConnection.addAlbum(new Album("album1", 1));
 		dbConnection.addAlbum(new Album("album2", 78));
 		ArrayList<Photo> photos = new ArrayList<>();
@@ -33,28 +37,16 @@ public class AlbumController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
 	public List<Photo> getPhotos(@PathVariable Long albumId){
-//		if (photosInAlbum.containsKey(albumId))
-//			return photosInAlbum.get(albumId);
-//		else 
-//			throw new Exception("Album with id  not found");
 		return null;
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
-	public void deleteAlbum(@PathVariable Long albumId) {
-//		if (photosInAlbum.get(albumId).size() > 0) {
-//			System.out.println("Cannot delete album since it has photos in it");
-//		}
-//		else {
-//			photosInAlbum.remove(photosInAlbum.get(albumId));
-//			System.out.println("Successfully deleted album from database");
-//		}
+	public void deleteAlbum(@PathVariable int albumId) {
+		dbConnection.removeAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/addAlbum")
-	public static void addAlbum(Album album) {
-//		int code = photosInAlbum.size()+1;
-//		photosInAlbum.put(code, new ArrayList<Photo>());
-//		albums.put(code, album);
+	public void addAlbum(Album album) {
+		dbConnection.addAlbum(album);
 	}
 }
