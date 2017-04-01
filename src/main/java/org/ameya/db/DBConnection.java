@@ -6,7 +6,7 @@ import org.ameya.model.*;
 public class DBConnection {
 
 	private HashMap<Integer, ArrayList<Photo>> photosInAlbum = new HashMap<>();
-	private HashMap<Integer, Album> albumMap = new HashMap<>();
+	private HashMap<Integer, Album> albums = new HashMap<>();
 	private static DBConnection dbConnection;
 	
 	private DBConnection(){
@@ -18,7 +18,7 @@ public class DBConnection {
 	} 
 	
 	public HashMap<Integer, Album> getAlbums() {
-		return albumMap;
+		return albums;
 	}
 	
 	public static DBConnection create(){
@@ -29,7 +29,7 @@ public class DBConnection {
 	}
 
 	public void addAlbum(Album album) {
-		
+		albums.put(album.getId(), album);		
 		
 	}
 }
