@@ -1,6 +1,7 @@
 package org.ameya.controller;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.ameya.db.DBConnection;
 import org.ameya.model.Album;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,17 +38,19 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
-	public List<Photo> getPhotos(@PathVariable Long albumId){
-		return null;
+	public Collection<Photo> getPhotos(@PathVariable int albumId){
+		return dbConnection.getPhotosInAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
-	public void deleteAlbum(@PathVariable int albumId) {
-		dbConnection.removeAlbum(albumId);
+	public boolean deleteAlbum(@PathVariable int albumId) {
+		return dbConnection.removeAlbum(albumId);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST, value = "/addAlbum")
-	public void addAlbum(Album album) {
-		dbConnection.addAlbum(album);
+	@RequestMapping(method = RequestMethod.POST)
+	public void addAlbum(@RequestBody List<Album> albums) {
+		for(Album album : albums){			
+			dbConnection.addAlbum(album);
+		}
 	}
 }

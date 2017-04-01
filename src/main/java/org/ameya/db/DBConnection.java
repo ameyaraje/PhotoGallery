@@ -34,8 +34,12 @@ public class DBConnection {
 		
 	}
 
-	public void removeAlbum(int albumId) {
-		albums.remove(albumId);		
+	public boolean removeAlbum(int albumId) {
+		if(albums.containsKey(albumId)){
+			return false;
+		}
+		photosInAlbum.remove(albumId);
+		return true;
 	}
 
 	public void addPhoto(Photo photo) {
@@ -46,16 +50,26 @@ public class DBConnection {
 			photosInAlbum.put(albumId, photos);
 		}
 		photos.add(photo);
+		photosfromId.put(photo.getPhotoId(), photo);		
 	}
 
-	public void removePhoto(Long photoId) {
+	public boolean removePhoto(int photoId) {
 		Photo photo = getPhoto(photoId);
+		if(photo == null){
+			return false;
+		}
 		int albumId = photo.getAlbumId();
 		Collection<Photo> photos = photosInAlbum.get(albumId);
 		photos.remove(photo);
+		photosfromId.remove(photoId);
+		return true;
 	}
 
-	public Photo getPhoto(Long photoId) {
+	public Photo getPhoto(int photoId) {
 		return photosfromId.get(photoId);
+	}
+
+	public Collection<Photo> getPhotosInAlbum(int albumId) {
+		return photosInAlbum.get(albumId);
 	}
 }

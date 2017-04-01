@@ -1,8 +1,5 @@
 package org.ameya.model;
 
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-
 public class Album {
 	private int id;
 	private String title;

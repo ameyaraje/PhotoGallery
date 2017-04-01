@@ -1,22 +1,19 @@
 package org.ameya.model;
 
-import org.mongodb.morphia.annotations.Entity;
-import org.mongodb.morphia.annotations.Id;
-
 public class Photo {
-	
-	private int albumId;	
-	private String photoTitle;
+
+	private int albumId;
+	private String title;
 	private String url;
 	private int photoId;
-	
+
 	public Photo() {
-		
+
 	}
-	
-	public Photo(int albumId, String photoTitle, String url, int photoId) {
+
+	public Photo(int albumId, String title, String url, int photoId) {
 		this.albumId = albumId;
-		this.photoTitle = photoTitle;
+		this.title = title;
 		this.url = url;
 		this.photoId = photoId;
 	}
@@ -29,12 +26,12 @@ public class Photo {
 		this.albumId = albumId;
 	}
 
-	public String getPhotoTitle() {
-		return photoTitle;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setPhotoTitle(String photoTitle) {
-		this.photoTitle = photoTitle;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getUrl() {
@@ -44,11 +41,11 @@ public class Photo {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
+
 	public int getPhotoId() {
 		return photoId;
 	}
-	
+
 	public void setPhotoId(int photoId) {
 		this.photoId = photoId;
 	}
