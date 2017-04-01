@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/photos")
 public class PhotoController {
 
-	private static HashMap<Integer, ArrayList<Photo>> photosInAlbum = DBConn.getPhotosInAlbums();
-	private static HashMap<Integer, Album> albums = DBConn.getAlbums();
+	private static HashMap<Integer, ArrayList<Photo>> photosInAlbum = DBConnection.getPhotosInAlbums();
+	private static HashMap<Integer, Album> albums = DBConnection.getAlbums();
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
 	public static Photo getPhoto(@PathVariable Long photoId) {
@@ -51,7 +51,6 @@ public class PhotoController {
 			ArrayList<Photo> newAlbum =  new ArrayList<>();
 			newAlbum.add(photo);
 			photosInAlbum.put(photo.getAlbumId(), newAlbum);
-		}
-		
+		}	
 	}
 }
