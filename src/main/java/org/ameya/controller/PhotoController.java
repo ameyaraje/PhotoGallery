@@ -2,7 +2,7 @@ package org.ameya.controller;
 
 import java.util.List;
 
-import org.ameya.db.DBConnection;
+import org.ameya.db.DBUtil;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/photos")
 public class PhotoController {
 
-	private DBConnection dbConnection = DBConnection.create();
+	private DBUtil dbConnection = DBUtil.create();
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
 	public Photo getPhoto(@PathVariable int photoId) {
@@ -32,5 +32,10 @@ public class PhotoController {
 		for(Photo photo:photos){
 			dbConnection.addPhoto(photo);		
 		}
+	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value = "/{photoId}")
+	public boolean updatePhoto(@RequestBody Photo photo, @PathVariable int photoId) {
+		return dbConnection.updatePhoto(photo, photoId);
 	}
 }

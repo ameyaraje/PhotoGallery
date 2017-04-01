@@ -5,7 +5,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
-import org.ameya.db.DBConnection;
+import org.ameya.db.DBUtil;
 import org.ameya.model.Album;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/albums")
 public class AlbumController {
-	private DBConnection dbConnection = DBConnection.create();
+	private DBUtil dbConnection = DBUtil.create();
 
 	public AlbumController() {
 		init();

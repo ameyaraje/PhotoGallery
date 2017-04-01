@@ -13,8 +13,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Component
 public class JSONLoader {
-	private DBConnection photosInAlbums;
-	private DBConnection albumMap;
+	private DBUtil photosInAlbums;
+	private DBUtil albumMap;
 	
 	private static final String ALBUMS_URI = "https://jsonplaceholder.typicode.com/albums";
 	private static final String PHOTOS_URI = "https://jsonplaceholder.typicode.com/photos";
