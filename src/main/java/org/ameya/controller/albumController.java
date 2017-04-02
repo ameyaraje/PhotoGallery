@@ -33,8 +33,8 @@ public class AlbumController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
-	public void deleteAlbum(@PathVariable int albumId) {
-		mongoUtil.removeAlbum(albumId);
+	public boolean deleteAlbum(@PathVariable int albumId) {
+		return mongoUtil.removeAlbum(albumId);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

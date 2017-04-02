@@ -49,8 +49,15 @@ public class MongoUtil {
 			addPhoto(photo);
 	}
 	
-	public void removeAlbum(int albumId) {
-		datastore.delete(Album.class, albumId);
+	public boolean removeAlbum(int albumId) {
+		List<Photo> photos;
+		photos = datastore.createQuery(Photo.class).field("albumId").equal(albumId).asList();
+		if (photos.size() == 0) {
+			datastore.delete(Album.class, albumId);
+			return true;
+		}
+		else 
+			return false;
 	}
 
 	public void removePhoto(int photoId) {
