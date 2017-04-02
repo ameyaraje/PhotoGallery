@@ -5,7 +5,7 @@ public class Photo {
 	private int albumId;
 	private String title;
 	private String url;
-	private int photoId;
+	private int id;
 
 	public Photo() {
 
@@ -15,7 +15,7 @@ public class Photo {
 		this.albumId = albumId;
 		this.title = title;
 		this.url = url;
-		this.photoId = photoId;
+		this.id = photoId;
 	}
 
 	public int getAlbumId() {
@@ -42,11 +42,12 @@ public class Photo {
 		this.url = url;
 	}
 
-	public int getPhotoId() {
-		return photoId;
+	public int getId() {
+		return id;
 	}
 
-	public void setPhotoId(int photoId) {
-		this.photoId = photoId;
+	public void setId(int id) {
+		this.id = id;
 	}
+
 }

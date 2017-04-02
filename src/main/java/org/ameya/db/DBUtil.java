@@ -56,7 +56,7 @@ public class DBUtil {
 			photosInAlbum.put(albumId, photos);
 		}
 		photos.add(photo);
-		photosfromId.put(photo.getPhotoId(), photo);		
+		photosfromId.put(photo.getId(), photo);		
 	}
 
 	public boolean removePhoto(int photoId) {
@@ -82,7 +82,7 @@ public class DBUtil {
 		photos.remove(photoFromPhotoMap);
 		photos.add(photo);
 
-		photoFromPhotoMap.setPhotoId(photoId);
+		photoFromPhotoMap.setId(photoId);
 		photoFromPhotoMap.setTitle(photo.getTitle());
 		photoFromPhotoMap.setUrl(photo.getUrl());
 		photoFromPhotoMap.setAlbumId(photo.getAlbumId());
@@ -105,7 +105,15 @@ public class DBUtil {
 		return albums;
 	}
 
+	public void addAlbum(Album[] albums) {
+		for(Album album: albums){
+			addAlbum(album);
+		}		
+	}
 
-
-	
+	public void addPhoto(Photo[] photos) {
+		for(Photo photo: photos){
+			addPhoto(photo);
+		}
+	}	
 }
