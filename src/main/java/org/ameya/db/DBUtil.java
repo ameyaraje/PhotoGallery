@@ -8,17 +8,17 @@ public class DBUtil {
 	private HashMap<Integer, Collection<Photo>> photosInAlbum = new HashMap<>();
 	private HashMap<Integer, Album> albums = new HashMap<>();
 	private HashMap<Integer, Photo> photosfromId = new HashMap<>();
-	private static DBUtil dbConnection;
+	private static DBUtil dbUtil;
 		
 	DBUtil() {
 		
 	}
 
 	public static DBUtil create() {
-		if (dbConnection == null) {
-			dbConnection = new DBUtil();
+		if (dbUtil == null) {
+			dbUtil = new DBUtil();
 		}
-		return dbConnection;
+		return dbUtil;
 	}	
 
 	public void addAlbum(Album album) {
