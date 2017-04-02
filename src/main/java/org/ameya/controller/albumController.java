@@ -28,13 +28,13 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
-	public Collection<Photo> getPhotos(@PathVariable int albumId){
-		return dbUtil.getPhotosInAlbum(albumId);
+	public Album getPhotos(@PathVariable int albumId){
+		return mongoUtil.getPhotosInAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
 	public void deleteAlbum(@PathVariable int albumId) {
-		dbUtil.removeAlbum(albumId);
+		mongoUtil.removeAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

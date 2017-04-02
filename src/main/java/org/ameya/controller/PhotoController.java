@@ -27,12 +27,12 @@ public class PhotoController {
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
 	public Photo getPhoto(@PathVariable int photoId) {
-		return dbUtil.getPhoto(photoId);
+		return mongoUtil.getPhoto(photoId);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{photoId}")
 	public void removePhoto(@PathVariable int photoId) {
-		dbUtil.removePhoto(photoId);
+		mongoUtil.removePhoto(photoId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

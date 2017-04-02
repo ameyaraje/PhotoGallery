@@ -50,11 +50,11 @@ public class MongoUtil {
 	}
 	
 	public void removeAlbum(int albumId) {
-		datastore.delete(albumId);
+		datastore.delete(Album.class, albumId);
 	}
 
 	public void removePhoto(int photoId) {
-		datastore.delete(photoId);
+		datastore.delete(Photo.class, photoId);
 	}
 	
 	public List<Album> getAlbums() {
@@ -63,5 +63,13 @@ public class MongoUtil {
 
 	public List<Photo> getAllPhotos() {
 		return datastore.createQuery(Photo.class).asList();
+	}
+
+	public Photo getPhoto(int photoId) {
+		return datastore.get(Photo.class, photoId);
+	}
+
+	public Album getPhotosInAlbum(int albumId) {
+		return datastore.get(Album.class, albumId);
 	}
 }
