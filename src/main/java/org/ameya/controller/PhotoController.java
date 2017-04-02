@@ -24,7 +24,7 @@ public class PhotoController {
 	public List<Photo> getPhotos() {
 		return mongoUtil.getAllPhotos();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
 	public Photo getPhoto(@PathVariable int photoId) {
 		return mongoUtil.getPhoto(photoId);
@@ -34,14 +34,19 @@ public class PhotoController {
 	public void removePhoto(@PathVariable int photoId) {
 		mongoUtil.removePhoto(photoId);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public void addPhoto(@RequestBody List<Photo> photos) {
-		for(Photo photo:photos){
-			dbUtil.addPhoto(photo);		
+		for(Photo photo : photos){
+			mongoUtil.addPhoto(photo);		
 		}
+
+		/*
+		 * Create new photo Id
+		 * If same photo ID is entered, update it or not allow it??		
+		 */
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT, value = "/{photoId}")
 	public boolean updatePhoto(@RequestBody Photo photo, @PathVariable int photoId) {
 		return dbUtil.updatePhoto(photo, photoId);

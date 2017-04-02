@@ -21,29 +21,34 @@ import org.springframework.web.bind.annotation.RestController;
 public class AlbumController {
 	private DBUtil dbUtil = DBUtil.create();
 	private MongoUtil mongoUtil = MongoUtil.create();
-	
+
 	@RequestMapping(method = RequestMethod.GET)
 	public List<Album> getAlbums() {
 		return mongoUtil.getAlbums();
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
-	public Album getPhotos(@PathVariable int albumId){
+	public List<Photo> getPhotos(@PathVariable int albumId){
 		return mongoUtil.getPhotosInAlbum(albumId);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
 	public void deleteAlbum(@PathVariable int albumId) {
 		mongoUtil.removeAlbum(albumId);
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public void addAlbum(@RequestBody List<Album> albums) {
 		for(Album album : albums){			
-			dbUtil.addAlbum(album);
+			mongoUtil.addAlbum(album);
 		}
+
+		/*
+		 * Create new album Id
+		 * If same album ID is entered, update it or not allow it??		
+		 */
 	}
-	
+
 	@RequestMapping(method = RequestMethod.PUT, value = "/{albumId}")
 	public boolean updateAlbum(@RequestBody Album album, @PathVariable int albumId) {
 		return dbUtil.updateAlbum(album, albumId);

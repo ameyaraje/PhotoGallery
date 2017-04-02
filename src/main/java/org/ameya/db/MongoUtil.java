@@ -69,7 +69,8 @@ public class MongoUtil {
 		return datastore.get(Photo.class, photoId);
 	}
 
-	public Album getPhotosInAlbum(int albumId) {
-		return datastore.get(Album.class, albumId);
+	public List<Photo> getPhotosInAlbum(int albumId) {
+		return datastore.createQuery(Photo.class).field("albumId").equal(albumId).asList();
+		
 	}
 }
