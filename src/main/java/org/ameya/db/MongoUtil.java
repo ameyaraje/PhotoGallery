@@ -4,18 +4,17 @@ import org.ameya.model.Album;
 import org.ameya.model.Photo;
 import org.mongodb.morphia.Datastore;
 import org.mongodb.morphia.Morphia;
+import java.util.*;
 
 import com.mongodb.*;
 
 public class MongoUtil {
 	private static final String DATABASE_NAME = "albummanager";
-	private static final String HOST = "localhost:27017";
 	private final Datastore datastore;
 	private MongoClient mongoClient;
 	private static MongoUtil mongoUtil = null;
 
 	private MongoUtil () {
-//		MongoClientURI uri  = new MongoClientURI(HOST);
 		mongoClient = new MongoClient();
 		Morphia morphia = new Morphia();
 
@@ -50,8 +49,19 @@ public class MongoUtil {
 			addPhoto(photo);
 	}
 	
+	public void removeAlbum(int albumId) {
+		datastore.delete(albumId);
+	}
+
+	public void removePhoto(int photoId) {
+		datastore.delete(photoId);
+	}
 	
+	public List<Album> getAlbums() {
+		return datastore.createQuery(Album.class).asList();
+	}
 
-
-
+	public List<Photo> getAllPhotos() {
+		return datastore.createQuery(Photo.class).asList();
+	}
 }

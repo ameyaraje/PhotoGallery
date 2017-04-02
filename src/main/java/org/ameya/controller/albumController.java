@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.ameya.db.DBUtil;
+import org.ameya.db.MongoUtil;
 import org.ameya.model.Album;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,10 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/albums")
 public class AlbumController {
 	private DBUtil dbUtil = DBUtil.create();
+	private MongoUtil mongoUtil = MongoUtil.create();
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public HashMap<Integer, Album> getAlbums() {
-		return dbUtil.getAlbums();
+	public List<Album> getAlbums() {
+		return mongoUtil.getAlbums();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
@@ -31,8 +33,8 @@ public class AlbumController {
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
-	public boolean deleteAlbum(@PathVariable int albumId) {
-		return dbUtil.removeAlbum(albumId);
+	public void deleteAlbum(@PathVariable int albumId) {
+		dbUtil.removeAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)

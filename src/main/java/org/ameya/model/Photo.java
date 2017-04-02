@@ -3,7 +3,7 @@ package org.ameya.model;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
 
-@Entity
+@Entity("Photo")
 public class Photo {
 
 	private int albumId;

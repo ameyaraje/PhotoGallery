@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.ameya.db.DBUtil;
+import org.ameya.db.MongoUtil;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,10 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class PhotoController {
 
 	private DBUtil dbUtil = DBUtil.create();
+	private MongoUtil mongoUtil = MongoUtil.create();
 
 	@RequestMapping(method = RequestMethod.GET)
-	public Collection<Photo> getPhotos() {
-		return dbUtil.getAllPhotos();
+	public List<Photo> getPhotos() {
+		return mongoUtil.getAllPhotos();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{photoId}")
@@ -29,8 +31,8 @@ public class PhotoController {
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{photoId}")
-	public boolean removePhoto(@PathVariable int photoId) {
-		return dbUtil.removePhoto(photoId);
+	public void removePhoto(@PathVariable int photoId) {
+		dbUtil.removePhoto(photoId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
