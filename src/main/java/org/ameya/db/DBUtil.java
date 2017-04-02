@@ -47,16 +47,22 @@ public class DBUtil {
 		return true;	
 	}
 
-	public void addPhoto(Photo photo) {
+	public boolean addPhoto(Photo photo) {
 		int albumId = photo.getAlbumId();
-		
 		Collection<Photo> photos = photosInAlbum.get(albumId);
+		
+		if (!albums.containsKey(albumId))
+			return false;
+		
 		if (photos == null) {
 			photos = new HashSet<>();
 			photosInAlbum.put(albumId, photos);
 		}
+		
 		photos.add(photo);
 		photosfromId.put(photo.getId(), photo);		
+		
+		return true;
 	}
 
 	public boolean removePhoto(int photoId) {
@@ -115,5 +121,9 @@ public class DBUtil {
 		for(Photo photo: photos){
 			addPhoto(photo);
 		}
+	}
+
+	public Collection<Photo> getAllPhotos() {
+		return photosfromId.values();
 	}	
 }

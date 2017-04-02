@@ -18,44 +18,32 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/albums")
 public class AlbumController {
-	private DBUtil dbConnection = DBUtil.create();
-
-	public AlbumController() {
-		init();
-	}
-
-	private void init() {
-		dbConnection.addAlbum(new Album("album1", 1));
-		dbConnection.addAlbum(new Album("album2", 78));
-		ArrayList<Photo> photos = new ArrayList<>();
-		Photo photo = new Photo(1, "photoTitle", "url", 1);
-		photos.add(photo );
-	}
+	private DBUtil dbUtil = DBUtil.create();
 	
 	@RequestMapping(method = RequestMethod.GET)
 	public HashMap<Integer, Album> getAlbums() {
-		return dbConnection.getAlbums();
+		return dbUtil.getAlbums();
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
 	public Collection<Photo> getPhotos(@PathVariable int albumId){
-		return dbConnection.getPhotosInAlbum(albumId);
+		return dbUtil.getPhotosInAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.DELETE, value = "/{albumId}")
 	public boolean deleteAlbum(@PathVariable int albumId) {
-		return dbConnection.removeAlbum(albumId);
+		return dbUtil.removeAlbum(albumId);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
 	public void addAlbum(@RequestBody List<Album> albums) {
 		for(Album album : albums){			
-			dbConnection.addAlbum(album);
+			dbUtil.addAlbum(album);
 		}
 	}
 	
 	@RequestMapping(method = RequestMethod.PUT, value = "/{albumId}")
 	public boolean updateAlbum(@RequestBody Album album, @PathVariable int albumId) {
-		return dbConnection.updateAlbum(album, albumId);
+		return dbUtil.updateAlbum(album, albumId);
 	}
 }
