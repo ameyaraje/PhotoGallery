@@ -6,21 +6,21 @@ import org.mongodb.morphia.annotations.Id;
 @Entity("Photo")
 public class Photo {
 
+	@Id
+	private int id;
 	private int albumId;
 	private String title;
 	private String url;
-	@Id
-	private int id;
 
 	public Photo() {
 
 	}
 
-	public Photo(int albumId, String title, String url, int photoId) {
+	public Photo(int albumId, String title, String url, int id) {
 		this.albumId = albumId;
 		this.title = title;
 		this.url = url;
-		this.id = photoId;
+		this.id = id;
 	}
 
 	public int getAlbumId() {
