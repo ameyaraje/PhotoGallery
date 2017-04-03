@@ -11,7 +11,7 @@ Required -
 - MongoDB
 
 
-To set up the project - 
+To set up the project -  
 ```git clone https://github.com/ameyaraje/PhotoGallery.git```  
 ```cd PhotoGallery```  
 ```mvn install```  
