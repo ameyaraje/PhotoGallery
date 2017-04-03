@@ -12,9 +12,9 @@ Required -
 
 
 To set up the project - 
-```git clone https://github.com/ameyaraje/PhotoGallery.git```
-```cd PhotoGallery```
-```mvn install``` 
+```git clone https://github.com/ameyaraje/PhotoGallery.git```  
+```cd PhotoGallery```  
+```mvn install```  
 - Deploy the WAR file called 'albummanager.war' in your server
 
 
