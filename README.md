@@ -36,3 +36,8 @@ The following are the URIs to perform operations -
 	- GET: /albums/{albumId} -> Returns all photos in that albumId
 	- PUT: /albums/{albumId} -> Updates album with that ID
 	- DELETE: /albums/{albumId} -> Deletes album with that ID
+
+
+UPDATE: 
+This is now live on Amazon EC2. To access it, you can use -  
+```http://34.208.155.110:8080/albummanager/```
