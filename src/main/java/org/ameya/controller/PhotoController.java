@@ -1,6 +1,5 @@
 package org.ameya.controller;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.ameya.db.DBUtil;
@@ -49,6 +48,6 @@ public class PhotoController {
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{photoId}")
 	public boolean updatePhoto(@RequestBody Photo photo, @PathVariable int photoId) {
-		return dbUtil.updatePhoto(photo, photoId);
+		return mongoUtil.updatePhoto(photo, photoId);
 	}
 }
