@@ -12,7 +12,7 @@ import com.google.gson.Gson;
 public class DataLoader {
 
 	private Gson gson = new Gson();
-	
+
 	public <T> T[] readUri(String uri, Class<T[]> cls) throws IOException {
 		return readJson(getJson(uri), cls);
 	}

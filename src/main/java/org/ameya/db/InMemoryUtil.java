@@ -3,20 +3,16 @@ package org.ameya.db;
 import java.util.*;
 import org.ameya.model.*;
 
-public class DBUtil {
+public class InMemoryUtil {
 
 	private HashMap<Integer, Collection<Photo>> photosInAlbum = new HashMap<>();
 	private HashMap<Integer, Album> albums = new HashMap<>();
 	private HashMap<Integer, Photo> photosfromId = new HashMap<>();
-	private static DBUtil dbUtil;
-		
-	DBUtil() {
-		
-	}
+	private static InMemoryUtil dbUtil;
 
-	public static DBUtil create() {
+	public static InMemoryUtil create() {
 		if (dbUtil == null) {
-			dbUtil = new DBUtil();
+			dbUtil = new InMemoryUtil();
 		}
 		return dbUtil;
 	}	
@@ -26,15 +22,17 @@ public class DBUtil {
 	}
 
 	public boolean removeAlbum(int albumId) {
-		if (albums.containsKey(albumId)) {
+		if (albums.containsKey(albumId)) 
 			return false;
-		}
+
 		Collection<Photo> photos = photosInAlbum.get(albumId);
 		if (!photos.isEmpty()) {
 			return false;
-		}		
+		}	
+		
 		albums.remove(albumId);
 		photosInAlbum.remove(albumId);
+		
 		return true;
 	}
 
@@ -67,13 +65,14 @@ public class DBUtil {
 
 	public boolean removePhoto(int photoId) {
 		Photo photo = getPhoto(photoId);
-		if(photo == null){
+		if (photo == null) 
 			return false;
-		}
+		
 		int albumId = photo.getAlbumId();
 		Collection<Photo> photos = photosInAlbum.get(albumId);
 		photos.remove(photo);
 		photosfromId.remove(photoId);
+		
 		return true;
 	}
 
@@ -112,15 +111,13 @@ public class DBUtil {
 	}
 
 	public void addAlbum(Album[] albums) {
-		for(Album album: albums){
+		for (Album album: albums)
 			addAlbum(album);
-		}		
 	}
 
 	public void addPhoto(Photo[] photos) {
-		for(Photo photo: photos){
+		for (Photo photo: photos)
 			addPhoto(photo);
-		}
 	}
 
 	public Collection<Photo> getAllPhotos() {

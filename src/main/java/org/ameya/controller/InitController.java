@@ -2,7 +2,7 @@ package org.ameya.controller;
 
 import java.io.IOException;
 
-import org.ameya.db.DBUtil;
+import org.ameya.db.InMemoryUtil;
 import org.ameya.db.MongoUtil;
 import org.ameya.loader.DataLoader;
 import org.ameya.model.Album;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/init")
 public class InitController {
 	
-	private DBUtil databaseUtil = DBUtil.create();
+	private InMemoryUtil inMemoryUtil = InMemoryUtil.create();
 	private MongoUtil mongoUtil = MongoUtil.create();
 
 	private static final String ALBUMS_URI = "https://jsonplaceholder.typicode.com/albums";

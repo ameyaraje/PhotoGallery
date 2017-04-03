@@ -2,7 +2,7 @@ package org.ameya.controller;
 
 import java.util.List;
 
-import org.ameya.db.DBUtil;
+import org.ameya.db.InMemoryUtil;
 import org.ameya.db.MongoUtil;
 import org.ameya.model.Photo;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/photos")
 public class PhotosController {
 
-	private DBUtil dbUtil = DBUtil.create();
+	private InMemoryUtil inMemoryUtil = InMemoryUtil.create();
 	private MongoUtil mongoUtil = MongoUtil.create();
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -36,14 +36,8 @@ public class PhotosController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public void addPhoto(@RequestBody List<Photo> photos) {
-		for(Photo photo : photos){
+		for (Photo photo : photos)
 			mongoUtil.addPhoto(photo);		
-		}
-
-		/*
-		 * Create new photo Id
-		 * If same photo ID is entered, update it or not allow it??		
-		 */
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{photoId}")
