@@ -71,6 +71,16 @@ public class MongoUtil {
 	public List<Photo> getAllPhotos() {
 		return datastore.createQuery(Photo.class).asList();
 	}
+	
+	public HashMap<Integer, List<Photo>> getAlbumsWithPhotos() {
+		List<Album> albums = datastore.createQuery(Album.class).asList();
+		HashMap<Integer, List<Photo>> map = new HashMap<>();
+		for (Album album: albums) {
+			List<Photo> photos = datastore.createQuery(Photo.class).field("albumId").equal(album.getId()).asList();
+			map.put(album.getId(), photos);
+		}
+		return map;
+	}
 
 	public Photo getPhoto(int photoId) {
 		return datastore.get(Photo.class, photoId);

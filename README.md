@@ -31,7 +31,8 @@ The following are the URIs to perform operations -
 
 3. Albums
 	- POST: /albums -> Takes a list of albums as input
-	- GET: /albums -> Returns all albums
+	- GET: /albums -> Returns all albums (without photos associated with each))
+	- GET: /albums/all -> Returns all albums (with photos associated with each)
 	- GET: /albums/{albumId} -> Returns all photos in that albumId
 	- PUT: /albums/{albumId} -> Updates album with that ID
 	- DELETE: /albums/{albumId} -> Deletes album with that ID

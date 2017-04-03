@@ -1,6 +1,7 @@
 package org.ameya.controller;
 
 import java.util.List;
+import java.util.HashMap;
 
 import org.ameya.db.InMemoryUtil;
 import org.ameya.db.MongoUtil;
@@ -24,6 +25,11 @@ public class AlbumsController {
 		return mongoUtil.getAlbums();
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/all")
+	public HashMap<Integer, List<Photo>> getAlbumsWithPhotos() {
+		return mongoUtil.getAlbumsWithPhotos();
+	}
+	
 	@RequestMapping(method = RequestMethod.GET, value = "/{albumId}")
 	public List<Photo> getPhotos(@PathVariable int albumId){
 		return mongoUtil.getPhotosInAlbum(albumId);

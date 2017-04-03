@@ -12,10 +12,6 @@ public class Photo {
 	private String title;
 	private String url;
 
-	public Photo() {
-
-	}
-
 	public Photo(int albumId, String title, String url, int id) {
 		this.albumId = albumId;
 		this.title = title;
