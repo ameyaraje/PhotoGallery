@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/photos")
-public class PhotoController {
+public class PhotosController {
 
 	private DBUtil dbUtil = DBUtil.create();
 	private MongoUtil mongoUtil = MongoUtil.create();

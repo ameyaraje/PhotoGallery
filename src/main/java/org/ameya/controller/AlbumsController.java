@@ -1,8 +1,5 @@
 package org.ameya.controller;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 
 import org.ameya.db.DBUtil;
@@ -18,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/albums")
-public class AlbumController {
+public class AlbumsController {
 	private DBUtil dbUtil = DBUtil.create();
 	private MongoUtil mongoUtil = MongoUtil.create();
 
@@ -47,10 +44,12 @@ public class AlbumController {
 		 * Create new album Id
 		 * If same album ID is entered, update it or not allow it??		
 		 */
+		
+		
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, value = "/{albumId}")
 	public boolean updateAlbum(@RequestBody Album album, @PathVariable int albumId) {
-		return dbUtil.updateAlbum(album, albumId);
+		return mongoUtil.updateAlbum(album, albumId);
 	}
 }

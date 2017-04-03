@@ -80,4 +80,34 @@ public class MongoUtil {
 		return datastore.createQuery(Photo.class).field("albumId").equal(albumId).asList();
 		
 	}
+
+	public boolean updatePhoto(Photo photo, int photoId) {
+		Photo photoFromDB = datastore.get(Photo.class, photoId);
+		if (photo == null)
+			return false;
+		
+		System.out.println("------------------------\n" + photo.getAlbumId() + " " + photo.getId() + " " + photo.getUrl());
+		photoFromDB.setAlbumId(photo.getAlbumId() == 0 ? photoFromDB.getAlbumId() : photo.getAlbumId());
+		photoFromDB.setId(photo.getId() == 0 ? photoFromDB.getId() : photo.getId());
+		photoFromDB.setTitle(photo.getTitle() == null ? photoFromDB.getTitle() : photo.getTitle());
+		photoFromDB.setUrl(photo.getUrl() == null ? photoFromDB.getUrl() : photo.getUrl());
+		
+		datastore.save(photoFromDB);
+
+		return true;
+	}
+
+	public boolean updateAlbum(Album album, int albumId) {
+		Album albumFromDB = datastore.get(Album.class, albumId);
+		if (albumFromDB == null)
+			return false;
+		
+		albumFromDB.setId(album.getId() == 0 ? albumFromDB.getId() : album.getId());
+		albumFromDB.setTitle(album.getTitle() == null ? albumFromDB.getTitle() : album.getTitle());
+		System.out.println("------------------------\n" + album.getId() + "     " + album.getTitle());
+		
+		datastore.save(albumFromDB);
+		
+		return true;
+	}
 }
