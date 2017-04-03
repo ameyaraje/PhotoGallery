@@ -1,6 +1,6 @@
 # PhotoAlbumManager Application
 
-A REST based Photo-Album manager application. Developed using Java, SpringBoot and MongoDB.
+A REST based Photo-Album manager application. Developed using Java, Spring and MongoDB.
 
 Performs CRUD operations on Albums and Photos. 
 
